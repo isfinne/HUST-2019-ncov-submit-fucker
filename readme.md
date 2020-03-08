@@ -23,7 +23,11 @@ sudo bash install_chrome.sh
 
 然后再修改`fucker.py`中的邮箱,校园网账号等信息.
 
-最后运行即可(建议在`tmux`建一个session).
+最后以下命令运行即可(建议在`tmux`建一个session).
+
+```bash
+python fucker.py
+```
 
 ## 声明
 
