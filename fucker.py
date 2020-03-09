@@ -132,13 +132,13 @@ while True:
             result = post_fuck_action(t1,t2)
         except :
             send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
-            sleep(23*60*60)
+            time.sleep(23*60*60)
         else:
             result_template['post_result'] = result
             send_email(str(result_template))
-            sleep(23*60*60)
+            time.sleep(23*60*60)
     else:
-        sleep(60*60)
+        time.sleep(60*60)
 
 # if you want to post per day yourself
 
