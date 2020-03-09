@@ -7,14 +7,15 @@ import sys
 import smtplib, ssl
 from random import uniform
 import datetime
+from config import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # TODO set your name and password in there
-uid = 'U201714***'
-password = '******'
-qq_pwd= '*****'
+uid = m_uid
+password = m_password
+qq_pwd= m_qq_pwd
 
 options = Options()
 options.headless = True
@@ -24,8 +25,9 @@ driver = webdriver.Chrome(executable_path='./chromedriver',chrome_options=option
 def send_email(result):
     port = 465  # For SSL
     smtp_server = "smtp.qq.com"
-    sender_email = "*****@qq.com"  # TODO there change youre sender email
-    receiver_email = "*****@lris.net"  # TODO there change your receiver email
+    global m_sender_email,m_receiver_email
+    sender_email = m_sender_email  # TODO there change youre sender email
+    receiver_email = m_receiver_email  # TODO there change your receiver email
     global qq_pwd
     password = qq_pwd # QQ授权码
     message = """\
@@ -57,7 +59,6 @@ def generate_normal_body_temperature():
 
 # 提交体温
 def post_fuck_action(T1=36.5,T2=36.7):
-    assert 0
     url = "https://yqtb.hust.edu.cn/infoplus/form/BKS/start"
     driver.get(url)
 
@@ -130,10 +131,21 @@ while True:
         try :
             result = post_fuck_action(t1,t2)
         except :
-            send_email("Programe Faied!")
+            send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
             sleep(23*60*60)
         else:
             result_template['post_result'] = result
             send_email(str(result_template))
             sleep(23*60*60)
 
+# if you want to post per day yourself
+
+# t1 = generate_normal_body_temperature()
+# t2= generate_normal_body_temperature()
+# result_template['T1'] = t1
+# result_template['T2'] = t2
+# try :
+#     result = post_fuck_action(t1,t2)
+#     print(result)
+# except :
+#     print("Eroer")
