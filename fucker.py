@@ -137,6 +137,8 @@ while True:
             result_template['post_result'] = result
             send_email(str(result_template))
             sleep(23*60*60)
+    else:
+        sleep(60*60)
 
 # if you want to post per day yourself
 
