@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 import sys
 import smtplib, ssl
+from email.mime.text import MIMEText
 from random import uniform
 import datetime
 from config import *
@@ -29,17 +30,21 @@ def send_email(result):
     receiver_email = m_receiver_email  
     global qq_pwd
     password = qq_pwd # QQ授权码
-    message = """\
-    Subject: 每日疫情上报结果
 
-    This message is sent from Python on the linux.\n\n"""
+    now_time = datetime.datetime.now()
+    now_time = datetime.datetime.strftime(now_time,'%m月%d天%H时%M分')
+    subject = now_time+"疫情上报结果"
 
-    message += result
+    message = MIMEText(result)
+    message['Subject'] = subject
+    print("发送邮件")
+    print(message)
 
     context = ssl.create_default_context()
     server=smtplib.SMTP_SSL(smtp_server, port)
     server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
+    server.sendmail(sender_email, receiver_email, message.as_string())
+    print("发送成功!")
 
 def wait_for_element_txt(element_txt):
     print('Waiting for loading: %s',element_txt)
@@ -135,7 +140,7 @@ while True:
        else:
            result_template['post_result'] = result
            send_email(str(result_template))
-           time.sleep(23*60*60)
+           time.sleep(21*60*60)
    else:
        print(hour)
        time.sleep(60*60)
