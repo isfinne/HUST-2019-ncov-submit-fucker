@@ -2,6 +2,8 @@
 
 项目参考[HUST-2019-ncov-submit-fucker](https://git.recolic.net/recolic-hust/hust-2019-ncov-submit-fucker)
 
+效果如下图所示
+![效果图](https://cdn.jsdelivr.net/gh/misaka7690/My_GitHub_CDN/img/2020/03/12/09-00-47.png)
 做了以下改进
 
 - 每日邮件提醒
