@@ -35,10 +35,10 @@ def send_email(result):
     now_time = datetime.datetime.strftime(now_time,'%m月%d天%H时%M分')
     subject = now_time+"疫情上报结果"
 
-    message = MIMEText(result)
+    message = MIMEText(result,'plain','utf-8')
     message['Subject'] = subject
     print("发送邮件")
-    print(message)
+    print(result)
 
     context = ssl.create_default_context()
     server=smtplib.SMTP_SSL(smtp_server, port)
@@ -58,7 +58,7 @@ def wait_for_element_class(element_class_name):
 
 # 获得正常体温
 def generate_normal_body_temperature():
-    t = uniform(36.1,37)
+    t = uniform(36.5,37)
     return t
 
 # 提交体温
@@ -122,37 +122,37 @@ def post_fuck_action(T1=36.5,T2=36.7):
 
 result_template = {'T1':0,'T2':0,'post_result':''}
 
-while True:
-   now_time = datetime.datetime.now()
-   hour = datetime.datetime.strftime(now_time,'%H')
-   if hour=='07':
-       minites = uniform(0,120) # 每天早上七点到九点随机的时间点填报
-       time.sleep(minites*60)
-       t1 = generate_normal_body_temperature()
-       t2= generate_normal_body_temperature()
-       result_template['T1'] = t1
-       result_template['T2'] = t2
-       try :
-           result = post_fuck_action(t1,t2)
-       except :
-           send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
-           time.sleep(23*60*60)
-       else:
-           result_template['post_result'] = result
-           send_email(str(result_template))
-           time.sleep(21*60*60)
-   else:
-       print(hour)
-       time.sleep(60*60)
-
+#while True:
+#   now_time = datetime.datetime.now()
+#   hour = datetime.datetime.strftime(now_time,'%H')
+#   if hour=='07':
+#       minites = uniform(0,120) # 每天早上七点到九点随机的时间点填报
+#       time.sleep(minites*60)
+#       t1 = generate_normal_body_temperature()
+#       t2= generate_normal_body_temperature()
+#       result_template['T1'] = t1
+#       result_template['T2'] = t2
+#       try :
+#           result = post_fuck_action(t1,t2)
+#       except :
+#           send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
+#           time.sleep(23*60*60)
+#       else:
+#           result_template['post_result'] = result
+#           send_email(str(result_template))
+#           time.sleep(21*60*60)
+#   else:
+#       print(hour)
+#       time.sleep(60*60)
+#
 # if you want to post per day yourself
 
-# t1 = generate_normal_body_temperature()
-# t2= generate_normal_body_temperature()
-# result_template['T1'] = t1
-# result_template['T2'] = t2
-# try :
-#     result = post_fuck_action(t1,t2)
-#     print(result)
-# except :
-#     print("Eroer")
+t1 = generate_normal_body_temperature()
+t2= generate_normal_body_temperature()
+result_template['T1'] = t1
+result_template['T2'] = t2
+try :
+    result = post_fuck_action(t1,t2)
+    print(result)
+except :
+    print("Eroer")
