@@ -17,9 +17,6 @@ uid = m_uid
 password = m_password
 qq_pwd= m_qq_pwd
 
-options = Options()
-options.headless = True
-driver = webdriver.Chrome(executable_path='./chromedriver',chrome_options=options)
 
 
 def send_email(result):
@@ -63,6 +60,9 @@ def generate_normal_body_temperature():
 
 # 提交体温
 def post_fuck_action(T1=36.5,T2=36.7):
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(executable_path='./chromedriver',chrome_options=options)
     url = "https://yqtb.hust.edu.cn/infoplus/form/BKS/start"
     driver.get(url)
 
@@ -122,37 +122,37 @@ def post_fuck_action(T1=36.5,T2=36.7):
 
 result_template = {'T1':0,'T2':0,'post_result':''}
 
-#while True:
-#   now_time = datetime.datetime.now()
-#   hour = datetime.datetime.strftime(now_time,'%H')
-#   if hour=='07':
-#       minites = uniform(0,120) # 每天早上七点到九点随机的时间点填报
-#       time.sleep(minites*60)
-#       t1 = generate_normal_body_temperature()
-#       t2= generate_normal_body_temperature()
-#       result_template['T1'] = t1
-#       result_template['T2'] = t2
-#       try :
-#           result = post_fuck_action(t1,t2)
-#       except :
-#           send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
-#           time.sleep(23*60*60)
-#       else:
-#           result_template['post_result'] = result
-#           send_email(str(result_template))
-#           time.sleep(21*60*60)
-#   else:
-#       print(hour)
-#       time.sleep(60*60)
-#
-# if you want to post per day yourself
+while True:
+   now_time = datetime.datetime.now()
+   hour = datetime.datetime.strftime(now_time,'%H')
+   if hour=='07':
+       minites = uniform(0,10) # 每天早上七点到七点十分随机的时间点填报
+       time.sleep(minites*60)
+       t1 = generate_normal_body_temperature()
+       t2= generate_normal_body_temperature()
+       result_template['T1'] = t1
+       result_template['T2'] = t2
+       try :
+           result = post_fuck_action(t1,t2)
+       except :
+           send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
+           time.sleep(23*60*60)
+       else:
+           result_template['post_result'] = result
+           send_email(str(result_template))
+           time.sleep(21*60*60)
+   else:
+       print(hour)
+       time.sleep(60*60)
 
-t1 = generate_normal_body_temperature()
-t2= generate_normal_body_temperature()
-result_template['T1'] = t1
-result_template['T2'] = t2
-try :
-    result = post_fuck_action(t1,t2)
-    print(result)
-except :
-    print("Eroer")
+# if you want to post per day yourself
+#
+#t1 = generate_normal_body_temperature()
+#t2= generate_normal_body_temperature()
+#result_template['T1'] = t1
+#result_template['T2'] = t2
+#try :
+#    result = post_fuck_action(t1,t2)
+#    print(result)
+#except :
+#    print("Eroer")
