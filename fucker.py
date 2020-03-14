@@ -43,13 +43,13 @@ def send_email(result):
     server.sendmail(sender_email, receiver_email, message.as_string())
     print("发送成功!")
 
-def wait_for_element_txt(element_txt):
-    print('Waiting for loading: %s',element_txt)
+def wait_for_element_txt(element_txt,driver):
+    print('Waiting for loading:'+element_txt)
     while driver.find_elements_by_link_text(element_txt) == []:
         time.sleep(1)
 
-def wait_for_element_class(element_class_name):
-    print('Waiting for loading: %s',element_class_name)
+def wait_for_element_class(element_class_name,driver):
+    print('Waiting for loading:'+element_class_name)
     while driver.find_elements_by_class_name(element_class_name) == []:
         time.sleep(1)
 
@@ -80,13 +80,13 @@ def post_fuck_action(T1=36.5,T2=36.7):
 
     time.sleep(2)
 
-    wait_for_element_txt('下一步 Next step')
-    assert driver.find_element_by_id('V1_CTRL154').is_selected() # Submit for myself
+    wait_for_element_txt('下一步 Next step',driver)
+    #assert driver.find_element_by_id('V1_CTRL154').is_selected() # Submit for myself
     driver.find_element_by_link_text('下一步 Next step').click()
 
     time.sleep(2)
 
-    wait_for_element_txt('提交 Submit')
+    wait_for_element_txt('提交 Submit',driver)
     # I will leave all info as-is.
     driver.find_element_by_id('V1_CTRL164').send_keys(str(T1)[:4])
     driver.find_element_by_id('V1_CTRL104').click()
@@ -94,6 +94,7 @@ def post_fuck_action(T1=36.5,T2=36.7):
 
     # family
     try:
+        driver.find_element_by_id('V1_CTRL172_0').send_keys('***') # TODO 填你家人的名字
         driver.find_element_by_id('V1_CTRL174_0').send_keys(str(T2)[:4])
         driver.find_element_by_id('V1_CTRL184_0').click()
         driver.find_element_by_id('V1_CTRL186_0').click()
@@ -101,10 +102,10 @@ def post_fuck_action(T1=36.5,T2=36.7):
         pass
     driver.find_element_by_link_text('提交 Submit').click() # Fucking dynamic id
 
-    wait_for_element_class('dialog_button')
+    wait_for_element_class('dialog_button',driver)
     driver.find_element_by_class_name('dialog_button').click() # first one is 'Ok', second one is 'Cancel'.
 
-    wait_for_element_class('dialog_content')
+    wait_for_element_class('dialog_content',driver)
     #while 'If you have anything to comment' in driver.find_element_by_class_name('dialog_content').text:
     #    wait_for_element_class('dialog_content')
     #while '' == driver.find_element_by_class_name('dialog_content').text:
@@ -125,7 +126,7 @@ result_template = {'T1':0,'T2':0,'post_result':''}
 while True:
    now_time = datetime.datetime.now()
    hour = datetime.datetime.strftime(now_time,'%H')
-   if hour=='07':
+   if hour=='19':
        minites = uniform(0,10) # 每天早上七点到七点十分随机的时间点填报
        time.sleep(minites*60)
        t1 = generate_normal_body_temperature()
@@ -136,7 +137,7 @@ while True:
            result = post_fuck_action(t1,t2)
        except :
            send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
-           time.sleep(23*60*60)
+           time.sleep(60*60)
        else:
            result_template['post_result'] = result
            send_email(str(result_template))
@@ -156,3 +157,5 @@ while True:
 #    print(result)
 #except :
 #    print("Eroer")
+#result = post_fuck_action(t1,t2)
+#print(result)
