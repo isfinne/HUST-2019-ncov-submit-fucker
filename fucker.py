@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding: utf-8 -*-  
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -93,8 +93,9 @@ def post_fuck_action(T1=36.5,T2=36.7):
     driver.find_element_by_id('V1_CTRL74').click()
 
     # family
+    global family_name
     try:
-        driver.find_element_by_id('V1_CTRL172_0').send_keys('***') # TODO 填你家人的名字
+        driver.find_element_by_id('V1_CTRL172_0').send_keys(family_name) # TODO 填你家人的名字
         driver.find_element_by_id('V1_CTRL174_0').send_keys(str(T2)[:4])
         driver.find_element_by_id('V1_CTRL184_0').click()
         driver.find_element_by_id('V1_CTRL186_0').click()
@@ -152,10 +153,5 @@ while True:
 #t2= generate_normal_body_temperature()
 #result_template['T1'] = t1
 #result_template['T2'] = t2
-#try :
-#    result = post_fuck_action(t1,t2)
-#    print(result)
-#except :
-#    print("Eroer")
 #result = post_fuck_action(t1,t2)
 #print(result)
