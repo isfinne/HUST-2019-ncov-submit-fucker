@@ -126,7 +126,7 @@ result_template = {'T1':0,'T2':0,'post_result':''}
 while True:
    now_time = datetime.datetime.now()
    hour = datetime.datetime.strftime(now_time,'%H')
-   if hour=='19':
+   if hour=='07':
        minites = uniform(0,10) # 每天早上七点到七点十分随机的时间点填报
        time.sleep(minites*60)
        t1 = generate_normal_body_temperature()
