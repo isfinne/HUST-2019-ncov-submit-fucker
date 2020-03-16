@@ -24,7 +24,15 @@
 sudo bash install_chrome.sh
 ```
 
-然后再修改`config.py`中的邮箱,校园网账号等信息.
+然后再修改`config.py`中的邮箱,校园网账号等信息.配置信息如下
+- family_name: 你的同居住的家人的名字,由于只填一个就行了,我这里只写了一个,两个以上去源码增加
+- m_uid: 学号,类似U201714***
+- m_password: hust认证密码
+- m_qq_pwd: QQ第三方客户端授权码
+- m_sender_email: 发送的QQ邮箱
+- m_receiver_email: 接受邮件的邮箱
+
+如果嫌配置邮箱麻烦,也可以不用邮箱,fucker.py最后注释有说明...
 
 最后以下命令运行即可(建议在`tmux`建一个session).
 
