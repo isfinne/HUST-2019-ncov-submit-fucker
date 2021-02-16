@@ -18,7 +18,7 @@ password = m_password
 qq_pwd= m_qq_pwd
 
 
-
+'''
 def send_email(result):
     port = 465  # For SSL
     smtp_server = "smtp.qq.com"
@@ -42,6 +42,7 @@ def send_email(result):
     server.login(sender_email, password)
     server.sendmail(sender_email, receiver_email, message.as_string())
     print("发送成功!")
+'''
 
 def wait_for_element_txt(element_txt,driver):
     print('Waiting for loading:'+element_txt)
@@ -92,6 +93,7 @@ def post_fuck_action(T1=36.5,T2=36.7):
     driver.find_element_by_id('V1_CTRL104').click()
     driver.find_element_by_id('V1_CTRL74').click()
 
+    '''
     # family
     global family_name
     try:
@@ -101,6 +103,7 @@ def post_fuck_action(T1=36.5,T2=36.7):
         driver.find_element_by_id('V1_CTRL186_0').click()
     except:
         pass
+    '''
     driver.find_element_by_link_text('提交 Submit').click() # Fucking dynamic id
 
     wait_for_element_class('dialog_button',driver)
@@ -137,7 +140,7 @@ while True:
       try :
           result = post_fuck_action(t1,t2)
       except :
-          send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄")
+          send_email("提交失败,快去服务器上检查一下吧,别又让辅导员罗嗦了🙄") 
           time.sleep(60*60)
       else:
           result_template['post_result'] = result
