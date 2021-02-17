@@ -163,6 +163,5 @@ result_template['post_result'] = result
 print(result_template)
 
 url='https://sctapi.ftqq.com/'+str(push_key)+'.send'
-content = str(result_template)
-d = {'title': '自动健康填报结果😜'，'desp': content}
+d = {'title': '自动健康填报结果😜'，'desp': '填报成功'}
 requests.post(url, data=d)
