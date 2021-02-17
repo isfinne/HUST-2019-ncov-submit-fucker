@@ -157,6 +157,9 @@ t1 = generate_normal_body_temperature()
 t2= generate_normal_body_temperature()
 result_template['T1'] = t1
 result_template['T2'] = t2
-result = post_fuck_action(t1,t2)
+try：
+    result = post_fuck_action(t1,t2)
+except:
+    pass
 result_template['post_result'] = result
 print(result_template)
