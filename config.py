@@ -7,10 +7,12 @@ m_qq_pwd: QQ授权码
 m_sender_email: 发送的QQ邮箱
 m_receiver_email: 接受邮件的邮箱
 """
+import os
+
 family_name = "" 
 
-m_uid = ""  # 
-m_password = "" 
+m_uid = os.environ.get('UID')
+m_password = os.environ.get('PASSWD')
 m_qq_pwd = "" # # QQ授权码
 
 m_sender_email = "" # 发送的QQ邮箱
