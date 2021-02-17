@@ -10,11 +10,7 @@ on:
     branches: [ master ]
   schedule:
     - cron: 0 23 * * *
-
-env:
-  UID: ${{ secrets.UID}}
-  PASSWD: ${{ secrets.PASSWD}}
-  PUSH_KEY: ${{secrets.PUSH_KEY}}
+    
   
 jobs:
   build:
@@ -44,4 +40,8 @@ jobs:
       run: sudo bash install_chrome.sh
     
     - name: Run Script
+      env:
+        UID: ${{ secrets.UID}}
+        PASSWD: ${{ secrets.PASSWD}}
+        PUSH_KEY: ${{secrets.PUSH_KEY}}
       run: python fucker.py
