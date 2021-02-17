@@ -8,7 +8,14 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: 0 23 * * *
 
+env:
+  UID: ${{ secrets.UID}}
+  PASSWD: ${{ secrets.PASSWD}}
+  PUSH_KEY: ${{secrets.PUSH_KEY}}
+  
 jobs:
   build:
 
@@ -16,7 +23,9 @@ jobs:
 
 
     steps:
+    - name: Check out codes
     - uses: actions/checkout@v2
+    
     - name: Set up Python 2.x
       uses: actions/setup-python@v2
       with:
