@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-  
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -157,9 +158,9 @@ t1 = generate_normal_body_temperature()
 t2= generate_normal_body_temperature()
 result_template['T1'] = t1
 result_template['T2'] = t2
-try：
-    result = post_fuck_action(t1,t2)
-except:
-    pass
+result = post_fuck_action(t1,t2)
 result_template['post_result'] = result
 print(result_template)
+
+url='https://sctapi.ftqq.com/'+str(push_key)+'.send'
+d = {'title': '自动健康填报结果😜'， 'desp': result_template}

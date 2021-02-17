@@ -13,6 +13,7 @@ family_name = ""
 
 m_uid = os.environ.get('UID')
 m_password = os.environ.get('PASSWD')
+push_key = os.environ.get('PUSH_KEY')
 m_qq_pwd = "" # # QQ授权码
 
 m_sender_email = "" # 发送的QQ邮箱
