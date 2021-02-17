@@ -161,7 +161,8 @@ result_template['T2'] = t2
 result = post_fuck_action(t1,t2)
 result_template['post_result'] = result
 print(result_template)
-
+'''
 url='https://sctapi.ftqq.com/'+str(push_key)+'.send'
 d = {'title': '自动健康填报结果😜'，'desp': '填报成功'}
 requests.post(url, data=d)
+'''
